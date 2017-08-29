@@ -1,0 +1,68 @@
+default: &default
+  omniauth:
+    facebook:
+      id: fbid
+      sec: fbsecret
+      callback_url: 'https://example.com/auth/auth/facebook/callback'
+    linkedin:
+      key: lnkey
+      sec: lnsecret
+    google:
+      id: gpid
+      sec: gpsecret
+  smtp:
+    address: smtp.somewhere.com
+    port: 25
+    domain: example.com
+    user: user
+    pass: password
+    auth: plain
+  devise:
+    secret_key: devise-super-secret
+    mailer:
+      sender: please-change-me-at-config-initializers-devise@example.com
+  cdn:
+    url: 'https://cdn.example.com'
+  action_mailer:
+    host: localhost
+  vendors:
+    google_analytics: 'AA-00000000-0'
+  attachments:
+    attachments:
+      file:
+        digest: SHA256
+        secret: big-random-secret
+    competitions:
+      expected_csv:
+        digest: SHA256
+        secret: big-random-secret
+      ilustration:
+        digest: SHA256
+        secret: big-random-secret
+    submissions:
+      csv:
+        digest: SHA256
+        secret: big-random-secret
+    teams:
+      avatar:
+        digest: SHA256
+        secret: big-random-secret
+    users:
+      avatar:
+        digest: SHA256
+        secret: big-random-secret
+
+development:
+  <<: *default
+  base_url: 'http://localhost:3000'
+
+test:
+  <<: *default
+  base_url: 'http://localhost:3000'
+  fog:
+    storage:
+      credentials:
+        provider: 'Local'
+        local_root: "tmp/tests/attachments"
+      directory: ''
+      host: "http://localhost:3000"

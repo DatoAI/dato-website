@@ -1,0 +1,85 @@
+<%= instructions_error(competition) %>
+
+<%= nested_form_for(competition) do |f| %>
+  <%= f.label :name, class: 'label' %>
+  <p class="control">
+    <%= f.text_field :name, class: 'input', type: 'text' %>
+  </p>
+
+  <%= f.label :ilustration, class: 'label' %>
+  <p class="control"><%= f.file_field :ilustration, accept: 'image/png,image/gif,image/jpeg' %></p>
+
+  <%= f.label :metric, class: 'label' %>
+  <p class="control">
+    <%= f.select :metric, options_for_select(Metrorb.metrics_name_and_abbr, competition.metric), {}, { class: 'input chosen' } %>
+  </p>
+
+  <%= f.label :daily_attempts, class: 'label' %>
+  <p class="control">
+    <%= f.number_field :daily_attempts, class: 'input' %>
+  </p>
+
+  <%= f.label :expected_csv, class: 'label' %>
+  <p class="control"><%= f.file_field :expected_csv, accept: 'application/csv,application/excel,application/vnd.ms-excel,application/vnd.msexcel,text/comma-separated-values,text/csv,text/plain' %></p>
+
+  <%= f.label :expected_csv_id_column, class: 'label' %>
+  <p class="control">
+    <%= f.text_field :expected_csv_id_column, class: 'input', type: 'text', disabled: true %>
+  </p>
+
+  <%= f.label :expected_csv_val_column, class: 'label' %>
+  <p class="control">
+    <%= f.text_field :expected_csv_val_column, class: 'input', type: 'text', disabled: true %>
+  </p>
+
+  <%= f.label :total_prize, class: 'label' %>
+  <p class="control">
+    <%= f.number_field :total_prize, class: 'input', type: 'text' %>
+  </p>
+
+  <%= f.label :max_team_size, class: 'label' %>
+  <p class="control">
+    <%= f.number_field :max_team_size, class: 'input', type: 'text' %>
+  </p>
+
+  <%= f.label :deadline, class: 'label' %>
+  <p class="control">
+    <%= f.datetime_select :deadline %>
+  </p>
+
+  <hr>
+
+  <h2 class="title">Instruções</h2>
+
+  <%= f.fields_for :instructions do |iff| %>
+    <%= iff.label :name, class: 'label' %>
+    <p class="control">
+      <%= iff.text_field :name, class: 'input', type: 'text' %>
+    </p>
+    <div class="columns">
+      <div class="column">
+        <%= iff.label :markdown, class: 'label' %>
+        <%= iff.text_area :markdown, class: 'textarea markdown-input', type: 'text', height: 240 %>
+
+        <%= iff.file_field :attachments_files, multiple: true %>
+      </div>
+      <div class="column">
+        <label class="label">Pré-visualização</label>
+        <div class="content markdown-preview">
+
+        </div>
+      </div>
+    </div>
+    <p class="control">
+      <%= iff.link_to_remove "Remover", class: 'button is-danger' %>
+    </p>
+  <% end %>
+  <p class="control"><%= f.link_to_add "Adicionar Instrução", :instructions, class: 'button is-info' %></p>
+
+  <hr>
+
+  <p class="control">
+    <%= f.submit class: 'button is-success' %>
+  </p>
+  </div>
+<% end %>

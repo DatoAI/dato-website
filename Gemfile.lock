@@ -89,6 +89,7 @@ GEM
     bcrypt (3.1.11)
     bit-struct (0.15.0)
     builder (3.2.3)
+    byebug (9.1.0)
     capybara (2.13.0)
       addressable
       mime-types (>= 1.16)
@@ -356,6 +357,7 @@ PLATFORMS
 DEPENDENCIES
   annotate (~> 2.7)
   autoprefixer-rails (~> 6.7)
+  byebug (~> 9.1)
   capybara (~> 2.9)
   codeclimate-test-reporter (~> 1.0)
   devise (~> 4.2)

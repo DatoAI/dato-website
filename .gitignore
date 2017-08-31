@@ -12,3 +12,5 @@ config/database.yml
 # Ignore attachments
 public/system
 config/app.yml
+# Ignore debbug
+.byebug_history

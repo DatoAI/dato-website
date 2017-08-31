@@ -80,6 +80,7 @@ group :development do
   gem 'spring', '~> 1.7'
   gem 'annotate', '~> 2.7'
   gem 'rack-mini-profiler', '~> 0.10', require: false
+  gem 'byebug', '~> 9.1'
 end
 
 # =================================

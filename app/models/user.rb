@@ -27,6 +27,7 @@
 #  avatar_content_type    :string
 #  avatar_file_size       :integer
 #  avatar_updated_at      :datetime
+#  remote_avatar_url      :string
 #
 # Indexes
 #
@@ -55,7 +56,7 @@ class User < ApplicationRecord
     styles: { big: '128x128#', med: '64x64#', min: '32x32#' },
     hash_secret: Datoca.config.dig('attachments', 'users', 'avatar', 'secret'),
     hash_digest: Datoca.config.dig('attachments', 'users', 'avatar', 'digest'),
-    default_url: 'fallback-user.svg'
+    default_url: :set_default_url 
   }
 
   # =================================
@@ -84,7 +85,7 @@ class User < ApplicationRecord
   # Class Methods
   # =================================
 
-  def self.from_omniauth(auth)
+  def self.from_omniauth(auth) 
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token(DEFAULT_PASSWORD_SIZE)
@@ -101,4 +102,8 @@ class User < ApplicationRecord
     params.delete(:current_password)
     super(params)
   end
+
+  def set_default_url
+    self.remote_avatar_url || 'fallback-user.svg'  
+  end 
 end

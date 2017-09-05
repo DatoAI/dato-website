@@ -1,7 +1,7 @@
 # Datoca
 [![Build Status](https://travis-ci.org/oesgalha/datoca.svg?branch=develop)](https://travis-ci.org/oesgalha/datoca)
-[![Code Climate](https://codeclimate.com/github/oesgalha/datoca/badges/gpa.svg)](https://codeclimate.com/github/oesgalha/datoca)
-[![Test Coverage](https://codeclimate.com/github/oesgalha/datoca/badges/coverage.svg)](https://codeclimate.com/github/oesgalha/datoca/coverage)
+[![Code Climate](https://codeclimate.com/github/DatoAI/dato-website/badges/gpa.svg)](https://codeclimate.com/github/DatoAI/dato-website)
+[![Test Coverage](https://codeclimate.com/github/DatoAI/dato-website/badges/coverage.svg)](https://codeclimate.com/github/DatoAI/dato-website/coverage)
 [![Dependency Status](https://gemnasium.com/badges/github.com/oesgalha/datoca.svg)](https://gemnasium.com/github.com/oesgalha/datoca)
 
 

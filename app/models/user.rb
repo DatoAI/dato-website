@@ -56,7 +56,7 @@ class User < ApplicationRecord
     styles: { big: '128x128#', med: '64x64#', min: '32x32#' },
     hash_secret: Datoca.config.dig('attachments', 'users', 'avatar', 'secret'),
     hash_digest: Datoca.config.dig('attachments', 'users', 'avatar', 'digest'),
-    default_url: :set_default_url 
+    default_url: 'fallback-user.svg' 
   }
 
   # =================================
@@ -103,7 +103,4 @@ class User < ApplicationRecord
     super(params)
   end
 
-  def set_default_url
-    self.remote_avatar_url || 'fallback-user.svg'  
-  end 
 end

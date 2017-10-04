@@ -43,8 +43,13 @@
           <% @team.users.each do |user| %>
             <div class="column has-text-centered is-one-third">
               <%= link_to user do %>
-                <%= user.avatar.present? ? image_tag_with_fallback(user, 64) : 
-                    image_tag(user.remote_avatar_url) %>
+                <%= if !user.avatar.blank? 
+                      image_tag_with_fallback(user, 64)
+                    elsif !user.remote_avatar_url.blank?
+                      image_tag(user.remote_avatar_url)
+                    else
+                      image_tag_with_fallback(user, 64)
+                    end %>
               <% end %>
             </div>
           <% end %>

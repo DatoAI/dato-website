@@ -5,13 +5,7 @@
       <div class="level-left">
         <div class="level-item">
           <div class="image is-128x128 has-auto-margin">
-            <%= if !@user.avatar.blank?
-                  image_tag_with_fallback(@user, 128)
-                elsif !@user.remote_avatar_url.blank?
-                  image_tag(@user.remote_avatar_url)
-                else
-                  image_tag_with_fallback(@user, 128)  
-                end %>
+            <%= image_tag_with_fallback(@user, 128) %>
           </div>
           <div class="spacing-20"></div>
           <p>

@@ -58,7 +58,7 @@ class User < ApplicationRecord
     hash_digest: Datoca.config.dig('attachments', 'users', 'avatar', 'digest'),
     default_url: 'fallback-user.svg' 
   }
-
+  attr_reader :avatar_remote_url
   # =================================
   # Associations
   # =================================
@@ -77,8 +77,8 @@ class User < ApplicationRecord
   validates :bio, length: { maximum: 256 }, allow_blank: true
   validates :name, presence: true
   validates :avatar, {
-    attachment_content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png'] },
-    attachment_file_name: { matches: [/gif\z/, /png\z/, /jpe?g\z/] }
+    attachment_content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png', '/\Aimage\/.*\Z/'] },
+    attachment_file_name: { matches: [/gif\z/, /png\z/, /jpe?g\z/, /.*\z/] }
   }
 
   # =================================
@@ -90,7 +90,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token(DEFAULT_PASSWORD_SIZE)
       user.name = auth.info.name
-      user.remote_avatar_url = auth.info.image
+      user.avatar = auth.info.image
     end
   end
 

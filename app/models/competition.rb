@@ -127,6 +127,10 @@ class Competition < ApplicationRecord
     Metrorb.metrics_hash[metric.to_sym].name
   end
 
+  def disable_visible
+    self.disabled!
+  end
+  
   private
 
   def count_lines

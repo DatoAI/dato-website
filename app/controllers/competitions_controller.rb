@@ -4,7 +4,10 @@ class CompetitionsController < ApplicationController
 
   # GET /competitions
   def index
-    @q = Competition.ransack(params[:q])
+    unless current_user.admin?
+      params[:q] = {visible_eq: 'enabled'}
+    end  
+    @q = Competition.ransack(params[:q]) 
     @competitions = policy_scope(@q.result)
   end
 
@@ -54,7 +57,7 @@ class CompetitionsController < ApplicationController
   #PATCH/PUT /competitions/1
   def disable
     authorize(@competition)
-    if @competition.update_columns(visible: :disabled)
+    if @competition.disable_visible
       redirect_to competitions_url, notice: 'Competição desabilitada com sucesso.'
     else
       render :edit

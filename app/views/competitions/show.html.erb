@@ -48,7 +48,8 @@
               <p class="menu-label">Administrativo</p>
               <ul class="menu-list">
                 <li><%= link_to 'Editar', edit_competition_path(@competition) %></li>
-                <li><%= link_to 'Apagar', competition_path(@competition), method: :delete, data: { confirm: 'Tem certeza que quer apagar esta competição, dados, instruções e participações?' } %></li>
+                <li><%= link_to 'Desabilitar', disable_competition_path(@competition), method: :put, data: { confirm: 'Tem certeza que quer desabilitar esta competição, dados, instruções e participações?' }%> </li>
+                <!-- <li><%= link_to 'Apagar', competition_path(@competition), method: :delete, data: { confirm: 'Tem certeza que quer apagar esta competição, dados, instruções e participações?' } %></li> -->
               </ul>
             <% end %>
           </aside>

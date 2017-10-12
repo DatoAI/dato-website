@@ -1,6 +1,6 @@
 class CompetitionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_competition, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :disable]
+  before_action :set_competition, only: [:show, :edit, :update, :destroy, :disable]
 
   # GET /competitions
   def index
@@ -51,6 +51,16 @@ class CompetitionsController < ApplicationController
     redirect_to competitions_url, notice: 'Competição apagada com sucesso.'
   end
 
+  #PATCH/PUT /competitions/1
+  def disable
+    authorize(@competition)
+    if @competition.update_columns(visible: :disabled)
+      redirect_to competitions_url, notice: 'Competição desabilitada com sucesso.'
+    else
+      render :edit
+    end  
+  end 
+  
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_competition

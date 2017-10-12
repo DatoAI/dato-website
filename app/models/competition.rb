@@ -23,6 +23,7 @@
 #  ilustration_content_type  :string
 #  ilustration_file_size     :integer
 #  ilustration_updated_at    :datetime
+#  visible                   :integer          default("enabled")
 #
 
 class Competition < ApplicationRecord
@@ -34,7 +35,8 @@ class Competition < ApplicationRecord
   REQUIRED_INSTRUCTIONS = ['Avaliação', 'Dados', 'Descrição', 'Regras']
 
   enum metric: Metrorb.metrics_abbr_and_id
-
+  enum visible: { enabled: 0, disabled: 1 }
+  
   # =================================
   # Plugins
   # =================================
@@ -134,4 +136,5 @@ class Competition < ApplicationRecord
   def set_metric_sort
     self.metric_sort = Metrorb.metrics_hash[metric.to_sym].sort_direction.to_s
   end
+
 end

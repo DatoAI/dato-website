@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :competitions do
+    member do
+      put 'disable'
+    end
     resources :acceptances, only: [:new, :create]
     resources :rankings, only: [:index]
     resources :submissions, only: [:index, :show, :new, :create, :destroy] do

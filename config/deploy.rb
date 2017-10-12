@@ -3,7 +3,7 @@ require 'mina/git'
 require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 
 task :production do
-  set :domain, '40.74.244.164'
+  set :domain, '13.84.40.16'
   set :rails_env, 'production'
   set :deploy_to, '/home/deploy/datoca'
   set :repository, 'https://github.com/DatoAI/dato-website.git'
@@ -14,7 +14,7 @@ task :production do
 end
 
 task :staging do
-  set :domain, '13.84.150.6'
+  set :domain, '40.74.225.95'
   set :rails_env, 'staging'
   set :deploy_to, '/home/deploy/datoca'
   set :repository, 'https://github.com/DatoAI/dato-website.git'

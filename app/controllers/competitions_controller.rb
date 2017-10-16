@@ -1,10 +1,10 @@
 class CompetitionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :disable]
-  before_action :set_competition, only: [:show, :edit, :update, :destroy, :disable]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :disable, :enable]
+  before_action :set_competition, only: [:show, :edit, :update, :destroy, :disable, :enable]
 
   # GET /competitions
   def index
-    unless current_user.admin?
+    if current_user.nil? || !current_user.admin?
       params[:q] = {visible_eq: 'enabled'}
     end  
     @q = Competition.ransack(params[:q]) 
@@ -64,6 +64,16 @@ class CompetitionsController < ApplicationController
     end  
   end 
   
+  #PATCH/PUT /competitions/1
+  def enable
+    authorize(@competition)
+    if @competition.enable_visible
+      redirect_to competitions_url, notice: 'Competição habilitada com sucesso.'
+    else
+      render :edit
+    end  
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_competition

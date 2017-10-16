@@ -131,6 +131,10 @@ class Competition < ApplicationRecord
     self.disabled!
   end
   
+  def enable_visible
+    self.enabled!
+  end
+
   private
 
   def count_lines

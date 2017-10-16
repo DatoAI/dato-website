@@ -30,4 +30,8 @@ class CompetitionPolicy < ApplicationPolicy
     user&.admin?
   end
 
+  def enable?
+    user&.admin?
+  end
+
 end

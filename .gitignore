@@ -11,6 +11,7 @@ config/database.yml
 /coverage/
 # Ignore attachments
 public/system
+public/assets
 config/app.yml
 # Ignore debbug
 .byebug_history

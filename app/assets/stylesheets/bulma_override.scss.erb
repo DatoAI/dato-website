@@ -1,5 +1,5 @@
 
-$family-sans-serif: 'Cabin', sans-serif;
+$family-sans-serif: montserratregular, biorhymebold, sans-serif;
 
 // open color
 $oc-gray-0: #f8f9fa;
@@ -36,6 +36,34 @@ $yellow: $oc-yellow-3;
 
 
 @import "bulma";
+
+@font-face {
+    font-family: 'montserratregular';
+    src: url(font-path('montserrat-regular.eot'));
+    src: url(font-path('montserrat-regular.eot?#iefix')) format('embedded-opentype'),
+         local('montserrat Regular'),
+         local('montserrat-regular'), 
+         url(font-path('montserrat-regular.woff2')) format('woff2'),
+         url(font-path('montserrat-regular.woff')) format('woff'),
+         url(font-path('montserrat-regular.ttf')) format('truetype'),
+         url(font-path('montserrat-regular.svg#montserratregular')) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'biorhymebold';
+    src: url(font-path('biorhyme-bold.eot'));
+    src: url(font-path('biorhyme-bold.eot?#iefix')) format('embedded-opentype'),
+         local('biorhyme Bold'),
+         local('biorhyme-bold'),  
+         url(font-path('biorhyme-bold.woff2')) format('woff2'),
+         url(font-path('biorhyme-bold.woff')) format('woff'),
+         url(('biorhyme-bold.ttf')) format('truetype'),
+         url(('biorhyme-bold.svg#biorhymebold')) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 @font-face {
   font-family: 'Cabin';
@@ -92,6 +120,10 @@ $fa-font-path: "/assets/fontawesome/fonts";
 .is-512x256 {
   width: 512;
   height: 256px;
+}
+
+.is-45px {
+  font-size:45px;
 }
 
 .nav > .container > .nav-right.is-active > .nav-item:last-child:not(.is-tab) {

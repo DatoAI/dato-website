@@ -25,10 +25,54 @@
   60% {transform: translateY(-15px);}
 }
 
-.font-biorhyme {
+@mixin effect-button($button-color) {
+  &:hover, &:focus, &.is-active {
+    background-color: darken($button-color, 10%);
+    border-color: transparent;
+    color: white;
+  }
+}
+
+.font-biorhyme, footer {
   font-family: "biorhymebold"; 
 }
 
-footer {
-  font-family: "biorhymebold"; 
+.button.is-success.is-outlined {
+  background-color: transparent;
+  border-color: #5EC4B6;
+  border-width: 1px;
+  color: #5EC4B6;
+  @include effect-button(#5EC4B6);
+}
+
+.button.is-success.is-fullwidth {
+  background-color: #5EC4B6;
+  border-color: #5EC4B6;
+  color: rgb(255, 255, 255);
+  @include effect-button(#5EC4B6);
+}
+
+.button.is-primary.is-outlined {  
+  background-color: transparent;
+  border-color: #0064A9;
+  border-width: 1px;
+  color: #0064A9;
+  @include effect-button(#0064A9);  
+}
+
+.color-blue {
+  color: #0064A9;
+}
+
+.color-mint {
+  color: #5EC4B6;
+}
+
+.hero.is-info.background-color-mint,
+.hero-body.background-color-mint {
+  background-color: #5EC4B6;
+}
+
+.hero-body.background-color-blue {
+  background-color: #0064A9;
 }

@@ -8,6 +8,9 @@ services:
   - redis-server
 addons:
   postgresql: '9.4'
+  code_climate:
+    repo_token:
+      secure: "20dc02068be3ef15e84f03e845d5e2baa8d922a9e936b6675e3ee5458556e77d"
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.travis.yml config/database.yml

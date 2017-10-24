@@ -273,7 +273,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   fb = Datoca.config.dig('omniauth', 'facebook')
-  config.omniauth :facebook, fb&.dig('id'), fb&.dig('sec'), callback_url: fb&.dig('callback_url'), image_size: :large
+  config.omniauth :facebook, fb&.dig('id'), fb&.dig('sec'), callback_url: fb&.dig('callback_url'), image_size: :large, secure_image_url: true
 
   ln = Datoca.config.dig('omniauth', 'linkedin')
   config.omniauth :linkedin, ln&.dig('key'), ln&.dig('sec')

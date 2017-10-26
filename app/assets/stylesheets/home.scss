@@ -33,7 +33,7 @@
   }
 }
 
-.font-biorhyme, footer {
+.font-biorhyme {
   font-family: "biorhymebold"; 
 }
 
@@ -75,4 +75,12 @@
 
 .hero-body.background-color-blue {
   background-color: #0064A9;
+}
+
+.footer.footer-app{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
 }

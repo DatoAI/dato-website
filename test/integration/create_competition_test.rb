@@ -52,7 +52,7 @@ class CreateCompetitionTest < ActionDispatch::IntegrationTest
 
     # Ensure the competition was created
     page.assert_selector('div.notification.is-info', text: 'Competição criada com sucesso.', visible: true)
-    page.assert_selector('span.title.is-3', text: competition_name, visible: true)
+    page.assert_selector('span.title.is-4', text: competition_name, visible: true)
 
     assert_equal competition_path(Competition.last), page.current_path
   end

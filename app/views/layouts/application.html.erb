@@ -17,12 +17,12 @@
   </head>
 
   <body>
-    <section class="hero is-dark is-medium">
+    <section class="hero is-medium background-blue">
       <div class="hero-head">
         <header class="nav">
           <div class="container">
             <div class="nav-left">
-              <%= link_to root_path, class: 'nav-item' do %>
+              <%= link_to root_path, class: '' do %>
                 <%= image_tag 'icon_dato_azul.svg', class: 'image is-48x48' %>
               <% end %>
             </div>
@@ -32,7 +32,7 @@
               <span></span>
             </span>
             <div id="nav-menu" class="nav-right nav-menu">
-              <%= link_to competitions_path, class: 'nav-item' do %>
+              <%= link_to competitions_path, class: 'nav-item color-white' do %>
                 <i class="fa fa-trophy has-text-warning"></i>
                 &nbsp;
                 Competições
@@ -66,7 +66,7 @@
 
     <%= yield %>
 
-    <footer class="footer">
+    <footer class="footer fix-footer">
       <div class="container">
         <div class="content has-text-centered">
           <p>

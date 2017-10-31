@@ -68,11 +68,18 @@
   color: #5EC4B6;
 }
 
-.hero.is-info.background-color-mint,
-.hero-body.background-color-mint {
+.background-mint {
   background-color: #5EC4B6;
 }
 
-.hero-body.background-color-blue {
+.background-blue {
   background-color: #0064A9;
+}
+
+.fix-footer {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  height: 20px;
+  margin-top: 10px;
 }

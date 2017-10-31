@@ -3,24 +3,24 @@
     <div class="container">
       <nav class="level">
         <div class="level-item has-text-left">
-          <span class="title is-3"><%= @competition.name %></span>
+          <span class="title is-4"><%= @competition.name %></span>
         </div>
         <div class="level-item"></div>
         <div class="level-item has-text-centered">
           <p class="heading">Prêmio</p>
-          <p class="title"><%= number_to_currency(@competition.total_prize) %></p>
+          <p class="title is-4"><%= number_to_currency(@competition.total_prize) %></p>
         </div>
         <div class="level-item has-text-centered">
           <p class="heading">Submissões</p>
-          <p class="title"><%= @competition.submissions.size %></p>
+          <p class="title is-4"><%= @competition.submissions.size %></p>
         </div>
         <div class="level-item has-text-centered">
           <p class="heading">Times</p>
-          <p class="title"><%= @competition.teams.size %></p>
+          <p class="title is-4"><%= @competition.teams.size %></p>
         </div>
         <div class="level-item has-text-centered">
           <p class="heading">Prazo</p>
-          <p class="title"><%= competition_deadline_text(@competition) %></p>
+          <p class="title is-4"><%= competition_deadline_text(@competition) %></p>
         </div>
       </nav>
     </div>

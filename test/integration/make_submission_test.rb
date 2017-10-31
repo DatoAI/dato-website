@@ -6,7 +6,7 @@ class MakeSubmissionTest < ActionDispatch::IntegrationTest
   def setup
     Capybara.current_driver = :poltergeist
     options = {
-      :window_size => [2048, 6000]
+      :window_size => [1024, 768]
     }
     Capybara.register_driver :poltergeist do |app|
       Capybara::Poltergeist::Driver.new(app, options)

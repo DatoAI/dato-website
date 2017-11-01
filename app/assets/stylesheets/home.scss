@@ -60,6 +60,14 @@
   @include effect-button(#0064A9);  
 }
 
+.button.is-info.is-outlined {
+  background-color: transparent;
+  border-color: rgb(255, 255, 255);
+  border-width: 1px;
+  color: rgb(255, 255, 255);
+  @include effect-button(#0064A9);
+}
+
 .color-blue {
   color: #0064A9;
 }
@@ -74,6 +82,14 @@
 
 .background-blue {
   background-color: #0064A9;
+}
+
+.notification.is-info {
+  background-color: #5EC4B6;
+}
+
+.button.is-danger.is-outlined {
+  font-weight: bolder;
 }
 
 .fix-footer {

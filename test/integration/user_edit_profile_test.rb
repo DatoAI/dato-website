@@ -17,7 +17,8 @@ class UserEditProfileTest < ActionDispatch::IntegrationTest
 
     # Go to profile
     assert(page.has_link?('Perfil'))
-    click_link('Perfil')
+    #click_link('Perfil')
+    first('.is-hidden-mobile').click_link('Perfil')
 
     # Click the edit profile button
     assert(page.has_link?('Editar Perfil'))

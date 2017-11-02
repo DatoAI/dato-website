@@ -5,7 +5,9 @@ class CompetitionsController < ApplicationController
   # GET /competitions
   def index
     if current_user.nil? || !current_user.admin?
-      params[:q] = {visible_eq: 'enabled'}
+      params[:q] ||= {}
+      filter = {visible_eq: 'enabled'}
+      params[:q].merge!(filter) 
     end  
     @q = Competition.ransack(params[:q]) 
     @competitions = policy_scope(@q.result)

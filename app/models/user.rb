@@ -42,7 +42,7 @@ class User < ApplicationRecord
   # =================================
 
   DEFAULT_PASSWORD_SIZE = 64
-  enum role: { user: 0, admin: 1 }
+  enum role: { user: 0, admin: 1, general_admin: 2, competition_admin: 3 }
 
   # =================================
   # Plugins

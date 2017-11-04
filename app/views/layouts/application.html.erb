@@ -32,39 +32,53 @@
               <span></span>
             </span>
             <div id="nav-menu" class="nav-right nav-menu">
-              <%= link_to competitions_path, class: 'nav-item bt-competitions' do %>
+              <%= link_to competitions_path, class: 'nav-item bt-competitions is-hidden-mobile' do %>
+                <i class="fa fa-trophy has-text-warning"></i>
+                &nbsp;
+                Competições
+              <% end %>
+              <%= link_to competitions_path, class: 'nav-item bt-competitions-mobile is-hidden-tablet' do %>
                 <i class="fa fa-trophy has-text-warning"></i>
                 &nbsp;
                 Competições
               <% end %>
               <% if current_user %>
                 <div class="nav-item is-child is-hidden-mobile ">
-                  <%= link_to user_path(current_user), class: 'button is-info is-outlined bt-header' do %>
+                  <%= link_to user_path(current_user), class: 'button is-info is-outlined bt-dato' do %>
                     <span>Perfil</span>
                     <span class="icon is-small"><i class="fa fa-user-circle"></i></span>
                   <% end %>
                 </div>
                 <div class="nav-item is-child is-hidden-tablet">
-                  <%= link_to user_path(current_user), class: 'button is-info is-outlined' do %>
+                  <%= link_to user_path(current_user), class: 'button is-info is-outlined bt-dato-mobile' do %>
                     <span>Perfil</span>
                     <span class="icon is-small"><i class="fa fa-user-circle"></i></span>
                   <% end %>
                 </div>
-                <div class="nav-item">
-                  <%= link_to destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined' do %>
+                <div class="nav-item is-child is-hidden-mobile">
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined bt-dato' do %>
+                    <span>Sair</span>
+                    <span class="icon is-small"><i class="fa fa-window-close"></i></span>
+                  <% end %>
+                </div>
+                <div class="nav-item is-child is-hidden-tablet">
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined bt-dato-mobile' do %>
                     <span>Sair</span>
                     <span class="icon is-small"><i class="fa fa-window-close"></i></span>
                   <% end %>
                 </div>
               <% else %>
-                <div class="nav-item">
-                  <%= link_to 'Cadastrar', new_user_registration_path, class: 'button is-success is-outlined' %>
-                </div>
                 <div class="nav-item is-child is-hidden-mobile">
-                  <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined bt-header' %>
+                  <%= link_to 'Cadastrar', new_user_registration_path, class: 'button is-success is-outlined bt-dato' %>
                 </div>
                 <div class="nav-item is-child is-hidden-tablet">
-                  <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined' %>
+                  <%= link_to 'Cadastrar', new_user_registration_path, class: 'button is-success is-outlined bt-dato-mobile' %>
+                </div>
+                <div class="nav-item is-child is-hidden-mobile">
+                  <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined bt-dato' %>
+                </div>
+                <div class="nav-item is-child is-hidden-tablet">
+                  <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined bt-dato-mobile' %>
                 </div>
               <% end %>
             </div>

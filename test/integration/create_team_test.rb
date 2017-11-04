@@ -13,7 +13,7 @@ class CreateCompetitionTest < ActionDispatch::IntegrationTest
 
     # Go to profile
     #click_link 'Perfil'
-    first('.is-hidden-mobile').click_link('Perfil')
+    first('.nav-item.is-child.is-hidden-mobile').click_link('Perfil')
 
     # Click create team button
     click_link 'Criar Equipe'
@@ -41,7 +41,7 @@ class CreateCompetitionTest < ActionDispatch::IntegrationTest
 
     # Go to profile
     #click_link 'Perfil'
-    first('.is-hidden-mobile').click_link('Perfil')
+    first('.nav-item.is-child.is-hidden-mobile').click_link('Perfil')
 
     # Click create team button
     click_link 'Criar Equipe'

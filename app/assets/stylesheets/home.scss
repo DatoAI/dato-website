@@ -37,7 +37,7 @@
   font-family: "biorhymebold"; 
 }
 
-.button.is-success.is-outlined {
+.button.is-success.is-outlined.bt-dato {
   background-color: transparent;
   border-color: #5EC4B6;
   border-width: 1px;
@@ -45,14 +45,14 @@
   @include effect-button(#5EC4B6);
 }
 
-.button.is-success.is-fullwidth {
+.button.is-success.is-outlined.bt-dato-mobile{
   background-color: #5EC4B6;
   border-color: #5EC4B6;
+  border-width: 1px;
   color: rgb(255, 255, 255);
-  @include effect-button(#5EC4B6);
 }
 
-.button.is-primary.is-outlined {  
+.button.is-primary.is-outlined.bt-dato {  
   background-color: transparent;
   border-color: #0064A9;
   border-width: 1px;
@@ -60,7 +60,7 @@
   @include effect-button(#0064A9);  
 }
 
-.button.is-info.is-outlined.bt-header {
+.button.is-info.is-outlined.bt-dato {
   background-color: transparent;
   border-color: rgb(255, 255, 255);
   border-width: 1px;
@@ -68,11 +68,25 @@
   @include effect-button(#0064A9);
 }
 
-.button.is-danger.is-outlined {
+.button.is-info.is-outlined.bt-dato-mobile{
+  background-color: #0064A9;
+  border-color: #0064A9;
+  border-width: 1px;
+  color: rgb(255, 255, 255);
+}
+
+.button.is-danger.is-outlined.bt-dato {
   background-color: transparent;
   border-color: #ffe066;
   color: #ffe066;
   @include effect-button(#ffe066);
+}
+
+.button.is-danger.is-outlined.bt-dato-mobile {
+  background-color: #fa5252;
+  border-color: #fa5252;
+  border-width: 1px;
+  color: rgb(255, 255, 255);
 }
 
 .color-blue {

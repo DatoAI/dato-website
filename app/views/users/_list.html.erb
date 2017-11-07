@@ -1,0 +1,27 @@
+<div class="column">
+  <% if @users.nil? || @users.empty? %>
+    <h2 class="title has-text-centered">Nenhum usuário encontrado ):</h2>
+  <% else %>
+    <% @users.each do |user| %>
+      <%= link_to edit_user_path(user), class: 'box' do %>
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item"><%= image_tag_with_fallback(user, 64) %></div>
+            <div class="level-item"><p class="title is-5"><%= user.name %></p></div>
+          </div>
+          <div class="level-right">
+            <div class="level-item has-text-centered">
+              <p class="heading">E-mail</p>
+              <div class="level-item"><p class="title is-5"><%= user.email %></p></div>
+            </div>
+            <div class="level-item has-text-centered">
+              <p class="heading">Permissão</p>
+               <div class="level-item"><p class="title is-5"><%= user.role %></p></div>
+            </div>
+          </div>
+        </nav>   
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+

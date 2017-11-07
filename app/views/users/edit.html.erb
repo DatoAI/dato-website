@@ -42,6 +42,17 @@
         <%= f.password_field :password, autocomplete: 'off', class: 'input' %>
       </p>
 
+      <% if current_user.admin? %>
+        <hr>
+
+        <h2 class="title">Mudar permissões</h2>
+
+        <%= f.label :role, class: 'label' %>
+        <p class="control">
+          <%= f.select :role, options_for_select(User.roles.keys.to_a, @user.role), {}, { class: 'input chosen' } %>
+        </p>
+      <% end %>
+      
       <p class="control">
         <%= f.submit class: 'button is-success' %>
       </p>

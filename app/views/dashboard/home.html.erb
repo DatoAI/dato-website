@@ -1,0 +1,45 @@
+<section class="hero background-blue">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title color-mint">Painel Administrativo</h1>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <nav class="panel">
+          <p class="panel-heading">
+              Filtros
+          </p>
+          <div class="panel-block">
+            <aside class="menu center">
+              <%= search_form_for @q, url: dashboard_list_users_path do |f| %>
+                <div class="control has-addons">
+                  <div class="control">
+                    <%= f.search_field :name_cont, class: :input, placeholder: 'Pesquise pelo nome'%>
+                  </div>
+                  <div class="control">
+                    <%= f.submit 'Search', class: 'button is-info'%>
+                  </div>
+                </div>
+              <% end %>
+            </aside>
+          </div>
+          <div class="panel-block">
+            <aside class="menu center">
+              <p class="menu-label">Menus</p>
+              <%= link_to dashboard_list_users_path, method: :get do %>
+                <ul class="menu-list">Usuários</ul>
+              <% end %>
+            </aside>
+          </div>
+        </nav>
+      </div>
+      <% if @search_filter %> 
+        <%= render partial: 'users/list' %>
+      <% end %>      
+    </div>
+  </div>
+</section>

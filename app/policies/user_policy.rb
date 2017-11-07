@@ -4,9 +4,21 @@ class UserPolicy < ApplicationPolicy
   # Actions
   # =================================
 
-  def update?
-    record == user
+  def edit?
+    record == user || user&.admin?
   end
+
+  def update?
+    record == user || user&.admin?
+  end
+
+  def home?
+    user&.admin?
+  end
+
+  def list_users?
+    user&.admin?
+  end 
 
   # =================================
   # Scope

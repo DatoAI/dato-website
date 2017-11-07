@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   get '/data/:uuid', to: 'attachments#show', as: 'data'
   resources :instructions, only: [:show]
   resources :users, only: [:show, :edit, :update]
+  
+  get 'dashboard/home'
+  get 'dashboard/list_users'
+
   resources :teams, only: [:show, :new, :edit, :create, :update]
   devise_for :users,
     path: 'auth',

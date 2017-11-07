@@ -67,6 +67,15 @@
                     <span class="icon is-small"><i class="fa fa-window-close"></i></span>
                   <% end %>
                 </div>
+                <% if current_user.admin? %>
+                  <div class="nav-item">
+                    <%= link_to dashboard_home_path, method: :get do %>
+                      <span title="Configurações" class="icon is-medium has-text-warning">
+                        <i class="fa fa-2x fa-cog"></i>
+                      </span>
+                    <% end %> 
+                  </div>
+                <% end %>
               <% else %>
                 <div class="nav-item is-child is-hidden-mobile">
                   <%= link_to 'Cadastrar', new_user_registration_path, class: 'button is-success is-outlined bt-dato' %>

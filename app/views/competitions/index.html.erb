@@ -42,13 +42,13 @@
                 <div class="level-right">
                   <div class="level-item has-text-centered">
                     <p class="heading">Prazo</p>
-                    <p class="title is-5"><%= competition_deadline_text(competition) %></p>
+                    <p class="title is-6"><%= competition_deadline_text(competition) %></p>
                   </div>
                   <div class="level-item"></div>
                   <% unless competition.total_prize.nil? || competition.total_prize.zero? %>
                     <div class="level-item has-text-centered">
                       <p class="heading">Prêmio</p>
-                      <p class="title is-5"><%= number_to_currency(competition.total_prize) %></p>
+                      <p class="title is-6"><%= number_to_currency(competition.total_prize) %></p>
                     </div>
                   <% end %>
                 </div>

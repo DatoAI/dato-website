@@ -1,4 +1,11 @@
 <section id="home-main-hero" class="hero is-primary is-large is-fullheight header-image">
+  <div class="hero-head">
+    <div class="container">
+        <%= link_to root_path, class: '' do %>
+        <%= image_tag 'icon_dato_transparent.svg', class: 'image is-64x64' %>
+        <% end %>
+    </div>  
+  </div>
   <div class="hero-body">
     <div class="container">
       <div class="tile is-ancestor">
@@ -20,10 +27,10 @@
           <div class="tile is-child has-text-centered font-biorhyme">
             <div class="control is-grouped is-centered">
               <p class="control">
-                <%= link_to 'Cadastrar', new_user_registration_path, class: 'button is-success is-outlined bt-dato is-large' %>
+                <%= link_to 'Cadastrar', new_user_registration_path, class: 'button is-success is-outlined bt-dato-home is-large' %>
               </p>
               <p class="control">
-                <%= link_to 'Entrar',  new_user_session_path, class: 'button is-primary is-outlined bt-dato is-large' %>
+                <%= link_to 'Entrar',  new_user_session_path, class: 'button is-primary is-outlined bt-dato-home is-large' %>
               </p>
             </div>
           </div>

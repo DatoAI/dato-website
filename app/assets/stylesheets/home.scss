@@ -1,5 +1,5 @@
 .header-image {
-  background: linear-gradient(rgba(0, 0, 0, 0.64), rgba(0, 0, 0, 0.92)), image-url("home.jpeg") center center no-repeat fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.62)), image-url("home.jpeg") center center no-repeat fixed;
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -45,6 +45,15 @@
   @include effect-button(#5EC4B6);
 }
 
+.button.is-success.is-outlined.bt-dato-home {
+  background-color: transparent;
+  border-color: rgb(255, 255, 255);
+  border-width: 2px;
+  color: rgb(255, 255, 255);
+  border-radius: 10px 0 0 10px;
+  @include effect-button(#0064A9); 
+}
+
 .button.is-success.is-outlined.bt-dato-mobile{
   background-color: #5EC4B6;
   border-color: #5EC4B6;
@@ -58,6 +67,15 @@
   border-width: 1px;
   color: #0064A9;
   @include effect-button(#0064A9);  
+}
+
+.button.is-primary.is-outlined.bt-dato-home {
+  background-color: transparent;
+  border-color: #5EC4B6;
+  border-width: 2px;
+  color: #5EC4B6;
+  border-radius: 0 10px 10px 0;
+  @include effect-button(#5EC4B6);
 }
 
 .button.is-info.is-outlined.bt-dato {
@@ -115,4 +133,9 @@
   overflow: hidden;
   height: 20px;
   margin-top: 10px;
+}
+
+.hero.is-large .hero-body {
+    padding-bottom: 0;
+    padding-top: 0;
 }

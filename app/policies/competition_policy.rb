@@ -15,23 +15,23 @@ class CompetitionPolicy < ApplicationPolicy
   # =================================
 
   def create?
-    user&.admin?
+    user&.is_admin
   end
 
   def update?
-    user&.admin?
+    user&.is_admin
   end
 
   def destroy?
-    user&.admin?
+    user&.is_admin
   end
 
   def disable?
-    user&.admin?
+    user&.is_admin
   end
 
   def enable?
-    user&.admin?
+    user&.is_admin
   end
 
 end

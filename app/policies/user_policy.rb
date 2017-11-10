@@ -5,20 +5,24 @@ class UserPolicy < ApplicationPolicy
   # =================================
 
   def edit?
-    record == user || user&.admin?
+    record == user || can_change_permission?
   end
 
   def update?
-    record == user || user&.admin?
+    record == user || user&.is_admin
   end
 
   def home?
-    user&.admin?
+    user&.is_admin
   end
 
   def list_users?
-    user&.admin?
+    user&.is_admin
   end 
+
+  def can_change_permission?
+    user&.admin? || (user.general_admin? && (record&.user? || record&.competition_admin?))
+  end
 
   # =================================
   # Scope

@@ -67,7 +67,7 @@
                     <span class="icon is-small"><i class="fa fa-window-close"></i></span>
                   <% end %>
                 </div>
-                <% if current_user.admin? %>
+                <% if policy(current_user).home? %>
                   <div class="nav-item">
                     <%= link_to dashboard_home_path, method: :get do %>
                       <span title="Configurações" class="icon is-medium has-text-warning">

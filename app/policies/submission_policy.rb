@@ -6,7 +6,7 @@ class SubmissionPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if user.admin?
+      if user.is_admin
         scope.all
       else
         scope.where(competitor: user).or(scope.where(competitor: user.teams))
@@ -19,7 +19,7 @@ class SubmissionPolicy < ApplicationPolicy
   # =================================
 
   def index?
-    user&.admin?
+    user&.is_admin
   end
 
   # Should allow to attempt a submission if has not submitted
@@ -33,7 +33,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin? || competitor == user || user.teams.include?(competitor)
+    user.is_admin || competitor == user || user.teams.include?(competitor)
   end
 
   def create?
@@ -41,7 +41,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin?
+    user.is_admin
   end
 
   private

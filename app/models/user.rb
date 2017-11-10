@@ -103,4 +103,16 @@ class User < ApplicationRecord
     super(params)
   end
 
+  def is_admin
+    admin? || general_admin? 
+  end
+
+  def roles_by_permission(current_user)
+    if current_user.admin?
+      User.roles.keys.to_a
+    elsif current_user.general_admin?
+      User.roles.select{ |r| r == role || r == 'user' || r == 'competition_admin'}.keys.to_a
+    end  
+  end
+
 end

@@ -6,8 +6,8 @@ class CompetitionsController < ApplicationController
   def index
     if current_user.nil? || !current_user.is_admin 
       params[:q] ||= {}
-      filter = {visible_eq: 'enabled'}
-      params[:q].merge!(filter) 
+      filters = {visible_eq: 'enabled', type_competition_eq: 'open'}
+      params[:q].merge!(filters) 
     end  
     @q = Competition.ransack(params[:q]) 
     @competitions = policy_scope(@q.result)
@@ -84,6 +84,6 @@ class CompetitionsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def competition_params
-    params.require(:competition).permit(:name, :max_team_size, :metric, :expected_csv, :deadline, :ilustration, :total_prize, :daily_attempts, instructions_attributes: [:id, :name, :markdown, :_destroy, attachments_files: []])
+    params.require(:competition).permit(:name, :max_team_size, :metric, :expected_csv, :deadline, :ilustration, :total_prize, :daily_attempts, :type_competition, instructions_attributes: [:id, :name, :markdown, :_destroy, attachments_files: []])
   end
 end

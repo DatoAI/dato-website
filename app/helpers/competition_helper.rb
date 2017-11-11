@@ -34,8 +34,8 @@ module CompetitionHelper
     params.permit(q: [params[:q]&.keys]).to_h.deep_dup.tap do |params_copy|
       params_copy[:q] ||= {}
       if current_user.nil? || !current_user.is_admin
-        filter_enabled = {visible_eq: 'enabled'}
-        params_copy[:q].merge!(filter_enabled)      
+        filters = {visible_eq: 'enabled', type_competition_eq: 'open'}
+        params_copy[:q].merge!(filters)      
       end  
       yield params_copy[:q]
       params_copy

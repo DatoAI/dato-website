@@ -47,6 +47,23 @@
     <%= f.datetime_select :deadline %>
   </p>
 
+  <% if current_user.is_admin %>
+    <hr>
+    <h2 class="title">Tipo de Competição</h2>
+
+    <%= f.label 'Tipo', class: 'label' %>
+    <div class="control">
+      <label class="radio">
+        <%= f.radio_button(:type_competition, :open, checked: true) %>
+          Pública
+      </label>
+      <label class="radio">
+        <%= f.radio_button(:type_competition, :specific) %>
+          Privada
+      </label>
+    </div>
+  <% end %>
+
   <hr>
 
   <h2 class="title">Instruções</h2>

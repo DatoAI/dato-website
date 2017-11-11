@@ -24,6 +24,7 @@
 #  ilustration_file_size     :integer
 #  ilustration_updated_at    :datetime
 #  visible                   :integer          default("enabled")
+#  type_competition          :integer          default("open")
 #
 
 class Competition < ApplicationRecord
@@ -36,7 +37,8 @@ class Competition < ApplicationRecord
 
   enum metric: Metrorb.metrics_abbr_and_id
   enum visible: { enabled: 0, disabled: 1 }
-  
+  enum type_competition: { open: 0, specific: 1 }
+
   # =================================
   # Plugins
   # =================================

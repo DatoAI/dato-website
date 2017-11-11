@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012005956) do
+ActiveRecord::Schema.define(version: 20171111190839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20171012005956) do
     t.integer  "ilustration_file_size"
     t.datetime "ilustration_updated_at"
     t.integer  "visible",                                           default: 0
+    t.integer  "type_competition",                                  default: 0
   end
 
   create_table "instructions", force: :cascade do |t|

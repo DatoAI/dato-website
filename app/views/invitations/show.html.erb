@@ -1,0 +1,54 @@
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <nav class="level">
+        <div class="level-item has-text-left">
+          <span class="title is-4"><%= @invitation.name %></span>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>    
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-3">
+        <div class="box">
+          <aside class="menu">
+            <p class="menu-label">Informações</p>
+            <ul class="menu-list">
+                <li>xxxx</li>
+            </ul>
+            <% if policy(@invitation).edit? %>
+              <p class="menu-label">Administrativo</p>
+              <ul class="menu-list">
+                <li><%= link_to 'Editar', edit_invitation_path(@invitation) %></li>
+                <li><%= link_to 'Apagar', invitation_path(@invitation), method: :delete, data: { confirm: 'Tem certeza que quer apagar este convite?' } %>
+              </ul>
+            <% end %>
+          </aside>
+        </div>
+      </div>
+      <div class="column">
+        <div id="instruction-text" class="content">
+          <h1>Criador</h1><%= raw(@invitation.user.name) %>
+        </div>
+        <div id="instruction-text" class="content">
+          <h1>Competição</h1><%= raw(@invitation.competition.name) %>
+        </div>
+         <div id="instruction-text" class="content">
+          <h1>Descrição</h1><%= raw(@invitation.description) %>
+        </div>
+      </div>
+      <div class="column">
+        <div id="instruction-text" class="content">
+          <h1>Convidados</h1>
+          João tá fixo<br>
+          Maria tá fixo<br>
+          Siloé tá fixo<br>
+          COlOCAR AQUI O MSM PAINEL DE EQUIPE COM TODOS USUÁRIOS(TEM NO PERFIL DO USER)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>        

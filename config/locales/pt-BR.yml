@@ -17,6 +17,9 @@ pt-BR:
       team:
         one: "Equipe"
         other: "Equipes"
+      invitation:
+        one: "Convite"
+        other: "Convites"  
     attributes:
       submission:
         csv: "Arquivo csv"

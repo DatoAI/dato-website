@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invitation: one
+  user: one
+  secret_hash: MyString
+
+two:
+  invitation: two
+  user: two
+  secret_hash: MyString

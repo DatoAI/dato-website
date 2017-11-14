@@ -1,0 +1,26 @@
+<%= instructions_error(invitation) %>
+
+<%= nested_form_for(invitation) do |f| %>
+
+  <%= f.label 'Nome', class: 'label' %>
+  <p class="control">
+    <%= f.text_field :name, class: 'input', type: 'text' %>
+  </p> 
+  
+  <%= f.label 'Descrição', class: 'label' %>
+  <p class="control">
+    <%= f.text_field :description, class: 'input', type: 'text' %>
+  </p> 
+
+  <%= f.label 'Competição', class: 'label' %>
+  <p class="control">
+    <%= f.select :competition_id, options_for_select(Competition.competition_name_and_key, invitation.competition.id), {}, { class: 'input chosen' } %>
+  </p>
+
+  <hr>
+
+  <p class="control">
+    <%= f.submit class: 'button is-success' %>
+  </p>
+
+<% end %>

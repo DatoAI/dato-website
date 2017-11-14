@@ -1,0 +1,58 @@
+<section class="hero background-blue">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title color-mint">Convites</h1>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <nav class="panel">
+          <p class="panel-heading">
+            Filtros
+          </p>
+          <div class="panel-block">
+            <aside class="menu">
+              <p class="menu-label">Prazo</p>
+              <ul class="menu-list"><%= time_filters %></ul>
+              <p class="menu-label">Ordem</p>
+              <ul class="menu-list"><%= order_filters %></ul>
+            </aside>
+          </div>
+          <% if policy(Invitation).create? %>
+            <div class="panel-block">
+              <%= link_to 'Criar', new_invitation_path, class: 'button is-success is-fullwidth' %>
+            </div>
+          <% end %>
+        </nav>
+      </div>
+      <div class="column">
+        <% if @invitations.nil? || @invitations.empty? %>
+          <h2 class="title has-text-centered">Nenhum convite encontrado ):</h2>
+        <% else %>
+          <% @invitations.each do |invitation| %>
+            <%= link_to invitation, class: 'box' do %>
+              <nav class="level">
+                <div class="level-left">
+                  <div class="level-item"><p class="title is-5"><%= invitation.name %></p></div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item has-text-centered">
+                    <p class="heading">Criador</p>
+                    <p class="title is-6"><%= invitation.user.name %></p>
+                  </div>
+                  <div class="level-item has-text-centered">
+                    <p class="heading">Competição</p>
+                    <p class="title is-6"><%= invitation.competition.name %></p>
+                  </div>
+                </div>
+              </nav>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

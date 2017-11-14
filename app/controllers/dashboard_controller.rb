@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
     @search_filter = false
   end
 
-  # GET /dashboard/home
+  # GET /dashboard/list_users
   def list_users
     authorize(current_user)
     @q = User.ransack(params[:q]) 

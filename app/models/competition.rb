@@ -111,6 +111,10 @@ class Competition < ApplicationRecord
     end
   end
 
+  def self.competition_name_and_key
+    Competition.all.map { |competition| [competition.name, competition.id] }
+  end
+
   # =================================
   # Instance Methods
   # =================================

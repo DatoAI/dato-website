@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :invitations
   resources :competitions do
     member do
       put 'disable'

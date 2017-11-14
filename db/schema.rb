@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111190839) do
+ActiveRecord::Schema.define(version: 20171113223759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 20171111190839) do
     t.integer  "type_competition",                                  default: 0
   end
 
+  create_table "guests", force: :cascade do |t|
+    t.integer  "invitation_id"
+    t.integer  "user_id"
+    t.string   "secret_hash"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["invitation_id"], name: "index_guests_on_invitation_id", using: :btree
+    t.index ["user_id"], name: "index_guests_on_user_id", using: :btree
+  end
+
   create_table "instructions", force: :cascade do |t|
     t.string   "name"
     t.text     "markdown"
@@ -75,6 +85,17 @@ ActiveRecord::Schema.define(version: 20171111190839) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["competition_id"], name: "index_instructions_on_competition_id", using: :btree
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "competition_id"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["competition_id"], name: "index_invitations_on_competition_id", using: :btree
+    t.index ["user_id"], name: "index_invitations_on_user_id", using: :btree
   end
 
   create_table "submissions", force: :cascade do |t|
@@ -145,7 +166,11 @@ ActiveRecord::Schema.define(version: 20171111190839) do
   add_foreign_key "acceptances", "competitions"
   add_foreign_key "acceptances", "users"
   add_foreign_key "attachments", "instructions"
+  add_foreign_key "guests", "invitations"
+  add_foreign_key "guests", "users"
   add_foreign_key "instructions", "competitions"
+  add_foreign_key "invitations", "competitions"
+  add_foreign_key "invitations", "users"
   add_foreign_key "submissions", "competitions"
 
   create_view :rankings, materialized: true,  sql_definition: <<-SQL

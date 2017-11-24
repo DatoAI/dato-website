@@ -13,7 +13,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def home?
-    user&.is_admin
+    user&.is_admin || user&.competition_admin?
   end
 
   def list_users?

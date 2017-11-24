@@ -69,10 +69,12 @@ class Competition < ApplicationRecord
   has_many :acceptances
   has_many :users, -> { order(:created_at).distinct }, through: :submissions, source: :competitor, source_type: 'User'
   has_many :teams, -> { order(:created_at).distinct }, through: :submissions, source: :competitor, source_type: 'Team'
+  has_many :invitations
+  has_many :guests, :through => :invitations
   has_many :instructions, inverse_of: :competition, dependent: :destroy
   has_one :description,     -> { where name: 'Descrição' }, class_name: 'Instruction', inverse_of: :competition
   has_one :evaluation_text, -> { where name: 'Avaliação' }, class_name: 'Instruction', inverse_of: :competition
-
+  
   accepts_nested_attributes_for :instructions
   accepts_nested_attributes_for :description
   accepts_nested_attributes_for :evaluation_text
@@ -111,8 +113,8 @@ class Competition < ApplicationRecord
     end
   end
 
-  def self.competition_name_and_key
-    Competition.all.map { |competition| [competition.name, competition.id] }
+  def self.competition_name_and_key_specific
+    Competition.where(type_competition: :specific).map { |competition| [competition.name, competition.id] }
   end
 
   # =================================

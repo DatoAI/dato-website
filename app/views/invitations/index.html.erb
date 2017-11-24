@@ -15,10 +15,8 @@
           </p>
           <div class="panel-block">
             <aside class="menu">
-              <p class="menu-label">Prazo</p>
-              <ul class="menu-list"><%= time_filters %></ul>
               <p class="menu-label">Ordem</p>
-              <ul class="menu-list"><%= order_filters %></ul>
+              <ul class="menu-list"><%= order_filters_invitation %></ul>
             </aside>
           </div>
           <% if policy(Invitation).create? %>

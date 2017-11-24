@@ -15,10 +15,6 @@
       <div class="column is-3">
         <div class="box">
           <aside class="menu">
-            <p class="menu-label">Informações</p>
-            <ul class="menu-list">
-                <li>xxxx</li>
-            </ul>
             <% if policy(@invitation).edit? %>
               <p class="menu-label">Administrativo</p>
               <ul class="menu-list">
@@ -40,15 +36,26 @@
           <h1>Descrição</h1><%= raw(@invitation.description) %>
         </div>
       </div>
-      <div class="column">
-        <div id="instruction-text" class="content">
-          <h1>Convidados</h1>
-          João tá fixo<br>
-          Maria tá fixo<br>
-          Siloé tá fixo<br>
-          COlOCAR AQUI O MSM PAINEL DE EQUIPE COM TODOS USUÁRIOS(TEM NO PERFIL DO USER)
+      <div class="column is-one-third">
+        <div class="box">
+          <p class="title">Convidados</p>
+          <hr>
+          <div class="columns is-multiline">
+            <% if @invitation.guests.any? %>
+              <% @invitation.guests.each do |guest| %>
+                <div class="column has-text-centered is-one-third">
+                  <%= link_to guest.user, :title => guest.user.name do %>
+                    <%= image_tag_with_fallback(guest.user, 64) %>
+                  <% end %>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="column is-half  is-offset-one-quarter has-text-centered">
+                <p>Ainda não convidou nenhum usuário para a Competição ):</p>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
   </div>
 </div>        

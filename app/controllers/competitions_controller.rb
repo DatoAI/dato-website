@@ -4,13 +4,14 @@ class CompetitionsController < ApplicationController
 
   # GET /competitions
   def index
-    if current_user.nil? || !current_user.is_admin 
-      params[:q] ||= {}
+    params[:q] ||= {}
+    if current_user.nil? || (!current_user.is_admin && current_user.guests.empty?)
       filters = {visible_eq: 'enabled', type_competition_eq: 'open'}
-      params[:q].merge!(filters) 
-    end  
-    @q = Competition.ransack(params[:q]) 
-    @competitions = policy_scope(@q.result)
+    end
+    params[:q].merge!(filters) 
+    
+    @q = Competition.ransack(params[:q])
+    @competitions = policy_scope(@q.result) 
   end
 
   # GET /competitions/1

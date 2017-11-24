@@ -14,7 +14,12 @@
 
   <%= f.label 'Competição', class: 'label' %>
   <p class="control">
-    <%= f.select :competition_id, options_for_select(Competition.competition_name_and_key, invitation.competition.id), {}, { class: 'input chosen' } %>
+    <%= f.select :competition_id, options_for_select(Competition.competition_name_and_key_specific, invitation.competition.id), {}, { class: 'input chosen' } %>
+  </p>
+
+  <%= f.label 'Usuários', class: 'label' %>
+  <p class="control">
+    <%= f.collection_select(:user_ids, @users, :id, :name, { }, { multiple: true, class: 'input chosen' }) %>
   </p>
 
   <hr>

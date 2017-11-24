@@ -3,10 +3,10 @@
 # Table name: invitations
 #
 #  id             :integer          not null, primary key
-#  name           :string
+#  name           :string           not null
 #  description    :text
-#  competition_id :integer
-#  user_id        :integer
+#  competition_id :integer          not null
+#  user_id        :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
@@ -22,8 +22,27 @@
 #
 
 class Invitation < ApplicationRecord
+  # =================================
+  # Associations
+  # =================================
   belongs_to :competition
   belongs_to :user #proprietor#
+  has_many :guests, :dependent => :delete_all
+  has_many :users, :through => :guests 
   
+  # =================================
+  # Validations
+  # =================================
+  validates :name, presence: true
 
+  # =================================
+  # Instance Methods
+  # =================================
+  def set_guests(ids)
+    ids.each {|i| 
+      unless i.empty? || users.exists?(i) 
+        guests << Guest.new(:user_id => i, :invitation_id => id, :secret_hash => SecureRandom.hex(16))
+      end  
+    }
+  end
 end

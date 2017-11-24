@@ -3,9 +3,9 @@
 # Table name: guests
 #
 #  id            :integer          not null, primary key
-#  invitation_id :integer
-#  user_id       :integer
-#  secret_hash   :string
+#  invitation_id :integer          not null
+#  user_id       :integer          not null
+#  secret_hash   :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
@@ -21,6 +21,10 @@
 #
 
 class Guest < ApplicationRecord
+  # =================================
+  # Associations
+  # =================================
   belongs_to :invitation
   belongs_to :user
+  
 end

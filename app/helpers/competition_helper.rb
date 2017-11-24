@@ -1,5 +1,5 @@
 module CompetitionHelper
-
+  
   TIME_FILTERS = [
     [ 'Ativas', { deadline_gteq: 1.day.since.midnight } ],
     [ 'Todas',  { deadline_gteq: nil } ]
@@ -16,6 +16,11 @@ module CompetitionHelper
 
   def order_filters
     filters(ORDER_FILTERS)
+  end
+
+  def type_filters
+    @user_id = current_user.id
+    filters([['Convidado', { type_competition: 'specific', guests_user_id_eq: @user_id}]])
   end
 
   def params_with_filter(filter_hash)

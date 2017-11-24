@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113223759) do
+ActiveRecord::Schema.define(version: 20171116215928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 20171113223759) do
   end
 
   create_table "guests", force: :cascade do |t|
-    t.integer  "invitation_id"
-    t.integer  "user_id"
-    t.string   "secret_hash"
+    t.integer  "invitation_id", null: false
+    t.integer  "user_id",       null: false
+    t.string   "secret_hash",   null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["invitation_id"], name: "index_guests_on_invitation_id", using: :btree
@@ -88,10 +88,10 @@ ActiveRecord::Schema.define(version: 20171113223759) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",           null: false
     t.text     "description"
-    t.integer  "competition_id"
-    t.integer  "user_id"
+    t.integer  "competition_id", null: false
+    t.integer  "user_id",        null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["competition_id"], name: "index_invitations_on_competition_id", using: :btree

@@ -5,7 +5,7 @@ class CompetitionsController < ApplicationController
   # GET /competitions
   def index
     params[:q] ||= {}
-    if current_user.nil? || (!current_user.is_admin && current_user.guests.empty?)
+    if current_user.nil? || !current_user.is_admin
       filters = {visible_eq: 'enabled', type_competition_eq: 'open'}
     end
     params[:q].merge!(filters) 

@@ -95,6 +95,10 @@ class User < ApplicationRecord
     end
   end
 
+  def self.create_user_from_invitation_by_email(email)
+    User.create(email: email, name: email.split("@").first, role: 'user', password: SecureRandom.hex(8))
+  end
+  
   # =================================
   # Instance Methods
   # =================================

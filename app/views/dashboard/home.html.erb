@@ -19,7 +19,7 @@
               <%= search_form_for @q, url: dashboard_list_users_path do |f| %>
                 <div class="control has-addons">
                   <div class="control">
-                    <%= f.search_field :name_cont, class: :input, placeholder: 'Pesquise pelo nome'%>
+                    <%= f.search_field :name_or_email_cont, class: :input, placeholder: 'nome ou e-mail'%>
                   </div>
                   <div class="control">
                     <%= f.submit 'Buscar', class: 'button is-info'%>

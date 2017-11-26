@@ -52,18 +52,11 @@ class Invitation < ApplicationRecord
     if !emails.nil? && !emails.empty?
       emails.split(";").each {|e|
         if e =~ VALID_EMAIL_REGEX
-          user = User.new
-          user.email = e
-          user.name = e.split("@").first
-          user.role = "user"
-          user.password = "000000"
-          if user.save
-            set_guests([user.id.to_s])
-          end
+          user = User.create_user_from_invitation_by_email(e)
+          set_guests([user.id.to_s])
         else
           errors.add(:emails, "E-mail inválido " << e)
-        end  
-      }
+        end }
     end  
   end
 

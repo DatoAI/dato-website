@@ -22,6 +22,12 @@
     <%= f.collection_select(:user_ids, @users, :id, :name, { }, { multiple: true, class: 'input chosen' }) %>
   </p>
 
+  <%= f.label 'E-mails', class: 'label' %>
+  <label>* Caso precise adicionar mais e-mails, não será possível na edição, é necessário criar outro convite.</label>
+  <p class="control">
+    <%= f.text_area :emails, class: 'textarea', type: 'text',
+      placeholder: 'Informe aqui o(s) e-mail(s) que você deseja ter acesso ao sistema e a competição. Obs.: Separe os e-mails por ponto e vírgula (;).' %>
+  </p> 
   <hr>
 
   <p class="control">

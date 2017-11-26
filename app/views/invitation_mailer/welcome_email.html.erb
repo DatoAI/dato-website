@@ -12,7 +12,10 @@
     <h1>Bem vindo a Dato, <%= @user.name %></h1>
     <p>
       Você foi convidado para participar da competição <b><%= @competicao.name %></b>.
-      Acesse sua conta com seu email <%= @user.email %> e participe :)<br>
+      Se você já é um usuário, acesse sua conta com seu e-mail <%= @user.email %> e participe :)<br>
+      Se ainda não é um usuário, seu cadastro foi efetivado automaticamente. Para acessar sua conta primeiro
+      altere sua senha acessando o link <%= @url_new_password %> e informe seu e-mail <%= @user.email %>, em seguida você receberá um e-mail
+      com as instruções para alteração de senha :)
     </p>
     <p>
       Para entrar no site, basta acessar este link: <%= @url %>.

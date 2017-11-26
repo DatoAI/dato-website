@@ -32,6 +32,7 @@ class InvitationsController < ApplicationController
     authorize(@invitation)
     @invitation.user = current_user
     @invitation.guests.each {|i| i.secret_hash = SecureRandom.hex(16) }
+    @invitation.create_user_by_emails
     if @invitation.save
       send_email(@invitation)
       redirect_to @invitation, notice: 'Convite criado com sucesso.'
@@ -44,7 +45,8 @@ class InvitationsController < ApplicationController
   def update
     authorize(@invitation)
     @invitation.set_guests(invitation_params[:user_ids])
-    if @invitation.update(invitation_params) 
+
+    if @invitation.update(invitation_params)
       send_email(@invitation)
       redirect_to @invitation, notice: 'Convite atualizado com sucesso.'
     else
@@ -75,6 +77,6 @@ class InvitationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def invitation_params
-      params.require(:invitation).permit(:name, :description, :competition_id, :user_id, user_ids: [])
+      params.require(:invitation).permit(:name, :description, :competition_id, :user_id, :emails, user_ids: [])
     end
 end

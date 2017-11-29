@@ -40,4 +40,16 @@ FactoryGirl.define do
     }
   end
 
+  factory :invitation do
+    name 'Convite para competição privada'
+    association :user, factory: :user
+    association :competition, factory: :competition
+  end  
+
+  factory :guest do
+    association :user, factory: :user
+    association :invitation, factory: :invitation
+    secret_hash SecureRandom.hex(16)
+  end   
+
 end

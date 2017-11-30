@@ -21,6 +21,14 @@ FactoryGirl.define do
     factory :admin do
       role { User.roles[:admin] }
     end
+
+    factory :general_admin do
+      role { User.roles[:general_admin] }
+    end
+
+    factory :competition_admin do
+      role { User.roles[:competition_admin] }
+    end
   end
   
   factory :competition do

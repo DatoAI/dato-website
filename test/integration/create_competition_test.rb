@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'byebug'
+
 class CreateCompetitionTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
@@ -76,25 +76,7 @@ class CreateCompetitionTest < ActionDispatch::IntegrationTest
     page.assert_selector('span.help.is-danger', text: 'não pode ficar em branco')
   end
 
-  test "an admin or general admin can disable a competition" do
-    admin = create(:admin)
-    competition = create(:competition)
-
-    # Sign in
-    sign_in(admin)
-    visit(competitions_path)
-
-    # page show competition
-    visit(competition_path(competition))
-    assert(page.has_link?('Desabilitar'))
-    
-    click_on("Desabilitar")
-
-    # Ensure user return to the form
-    page.assert_selector('div.notification.is-info', text: 'Competição desabilitada com sucesso.', visible: true)
-  end
-
-  test "an admin can disable and enable a competition" do
+  test "An admin or general admin can disable a competition" do
     admin = create(:admin)
     competition = create(:competition)
 
@@ -120,4 +102,57 @@ class CreateCompetitionTest < ActionDispatch::IntegrationTest
     page.assert_selector('div.notification.is-info', text: 'Competição habilitada com sucesso.', visible: true)
   end
 
+  test "An general_admin can disable and enable a competition" do
+    general_admin = create(:general_admin)
+    competition = create(:competition)
+
+    # Sign in
+    sign_in(general_admin)
+    visit(competitions_path)
+
+    # page show competition
+    visit(competition_path(competition))
+    assert(page.has_link?('Desabilitar'))
+    
+    click_on("Desabilitar")
+
+    # Ensure user return to the form
+    page.assert_selector('div.notification.is-info', text: 'Competição desabilitada com sucesso.', visible: true)
+    
+    # page show competition
+    visit(competition_path(competition))
+    assert(page.has_link?('Habilitar'))
+    
+    click_on("Habilitar")
+    # Ensure user return to the form
+    page.assert_selector('div.notification.is-info', text: 'Competição habilitada com sucesso.', visible: true)
+  end
+
+  test "An user with common role can't disable and enable a competition" do
+    user = create(:user)
+    competition = create(:competition)
+
+    # Sign in
+    sign_in(user)
+    visit(competitions_path)
+
+    # page show competition
+    visit(competition_path(competition))
+    assert(page.has_no_link?('Desabilitar'))
+    
+  end
+  
+  test "An competition_admin can't disable and enable a competition" do
+    competition_admin = create(:competition_admin)
+    competition = create(:competition)
+
+    # Sign in
+    sign_in(competition_admin)
+    visit(competitions_path)
+
+    # page show competition
+    visit(competition_path(competition))
+    assert(page.has_no_link?('Desabilitar'))
+    
+  end 
 end

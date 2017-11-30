@@ -13,4 +13,17 @@ class CompetitionTest < ActiveSupport::TestCase
     comp.save
     assert_equal 42, comp.expected_csv_line_count
   end
+
+  test 'It should disable a competition' do
+    comp = create(:competition)
+    comp.disable_visible
+    assert_equal comp.visible, Competition.find(comp.id).visible   
+  end
+
+  test 'It should enable a competition' do
+    comp = create(:competition)
+    comp.enable_visible
+    assert_equal comp.visible, Competition.find(comp.id).visible   
+  end
+
 end

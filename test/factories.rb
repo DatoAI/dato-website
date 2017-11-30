@@ -22,7 +22,7 @@ FactoryGirl.define do
       role { User.roles[:admin] }
     end
   end
-
+  
   factory :competition do
     name 'Competição 123'
     total_prize { 1_000 + rand(9_000) }
@@ -50,6 +50,6 @@ FactoryGirl.define do
     association :user, factory: :user
     association :invitation, factory: :invitation
     secret_hash SecureRandom.hex(16)
-  end   
+  end 
 
 end

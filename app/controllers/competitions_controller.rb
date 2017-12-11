@@ -10,7 +10,7 @@ class CompetitionsController < ApplicationController
     end
     params[:q].merge!(filters) 
     
-    @q = Competition.ransack(params[:q])
+    @q = Competition.order(visible: :asc, total_prize: :asc, deadline: :desc).ransack(params[:q])
     @competitions = policy_scope(@q.result) 
   end
 

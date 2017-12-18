@@ -63,7 +63,7 @@ end
 # =================================
 # ⚡️  M A D  M A T H  S T U F F  ⚡️
 # =================================
-gem 'metrorb', git: 'https://github.com/oesgalha/metrorb.git'
+gem 'metrorb', git: 'https://github.com/DatoAI/metrorb.git' 
 
 # =================================
 # Production Services

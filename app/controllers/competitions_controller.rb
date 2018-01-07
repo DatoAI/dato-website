@@ -5,12 +5,19 @@ class CompetitionsController < ApplicationController
   # GET /competitions
   def index
     params[:q] ||= {}
-    if current_user.nil? || !current_user.is_admin
+    if (current_user.nil? || !current_user.is_admin) 
       filters = {visible_eq: 'enabled', type_competition_eq: 'open'}
     end
-    params[:q].merge!(filters) 
     
-    @q = Competition.order(visible: :asc, total_prize: :asc, deadline: :desc).ransack(params[:q])
+    if params[:q][:type_competition_eq] == 'specific'
+      filters = nil
+      params[:q].merge!({ type_competition_eq: 1}) 
+      @q = Competition.distinct.order(visible: :asc, total_prize: :asc, deadline: :desc).ransack(params[:q])
+    else
+      params[:q].merge!(filters) 
+      @q = Competition.order(visible: :asc, total_prize: :asc, deadline: :desc).ransack(params[:q])
+    end  
+    
     @competitions = policy_scope(@q.result) 
   end
 

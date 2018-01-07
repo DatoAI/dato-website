@@ -20,7 +20,7 @@ module CompetitionHelper
 
   def type_filters
     @user_id = current_user.id
-    filters([['Convidado', { type_competition: 'specific', guests_user_id_eq: @user_id}]])
+    filters([['Convidado', { type_competition_eq: 'specific', guests_user_id_eq: @user_id}]])
   end
 
   def params_with_filter(filter_hash)
@@ -38,7 +38,7 @@ module CompetitionHelper
   def params_yield_filter
     params.permit(q: [params[:q]&.keys]).to_h.deep_dup.tap do |params_copy|
       params_copy[:q] ||= {}
-      if current_user.nil? || !current_user.is_admin
+      if (current_user.nil? || !current_user.is_admin) 
         filters = {visible_eq: 'enabled', type_competition_eq: 'open'}
         params_copy[:q].merge!(filters)      
       end  

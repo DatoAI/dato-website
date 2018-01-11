@@ -136,6 +136,8 @@ class Submission < ApplicationRecord
       self.evaluation_score = @metric_calc.acc
     when 'mae'
       self.evaluation_score = @metric_calc.mae
+    when 'f1s'
+      self.evaluation_score = @metric_calc.f1s
     end
   end
 

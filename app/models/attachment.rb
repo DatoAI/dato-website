@@ -20,14 +20,13 @@
 #
 #  fk_rails_8976efffe2  (instruction_id => instructions.id)
 #
-
 class Attachment < ApplicationRecord
 
-  # Images + CSV
+  # Images + CSV + ZIP
   IMG_CONTENT_TYPES = %w( image/jpeg image/gif image/png )
-  CSV_CONTENT_TYPES = %w( text/plain text/comma-separated-values text/csv application/csv application/excel application/vnd.ms-excel application/vnd.msexcel )
-  ATTACHMENT_CONTENT_TYPES = IMG_CONTENT_TYPES + CSV_CONTENT_TYPES
-  ATTACHMENT_EXTENSIONS = [/csv\z/, /gif\z/, /png\z/, /jpe?g\z/]
+  CSV_CONTENT_TYPES = %w( text/plain text/comma-separated-values text/csv application/csv application/excel application/vnd.ms-excel application/vnd.msexcel application/zip application/x-zip)
+  ATTACHMENT_CONTENT_TYPES = IMG_CONTENT_TYPES + CSV_CONTENT_TYPES 
+  ATTACHMENT_EXTENSIONS = [/csv\z/, /gif\z/, /png\z/, /jpe?g\z/, /zip\z/]
 
   # =================================
   # Plugins

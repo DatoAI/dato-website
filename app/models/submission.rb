@@ -52,6 +52,7 @@ class Submission < ApplicationRecord
   # =================================
 
   validates :competitor, presence: true
+  validates :csv_file_name, presence: true
   validates :csv, {
     presence: true,
     attachment_content_type: { content_type: Attachment::CSV_CONTENT_TYPES },
@@ -101,21 +102,36 @@ class Submission < ApplicationRecord
   end
 
   def validate_csv_size
-    unless read_csv.size + 1 == competition.expected_csv_line_count
-      errors.add(:csv, "não contém o mesmo número de linhas da solução esperada")
+    if validate_csv_presence_before_validates?
+      unless read_csv.size + 1 == competition.expected_csv_line_count
+        errors.add(:csv, "não contém o mesmo número de linhas da solução esperada")
+      end
     end
   end
 
   def validate_csv_cols
-    unless (read_csv.headers - headers.values).empty?
-      errors.add(:csv, "deve ter apenas as seguintes colunas: \"#{competition.expected_csv_id_column}\" e \"#{competition.expected_csv_val_column}\"")
+    if validate_csv_presence_before_validates?
+      unless (read_csv.headers - headers.values).empty?
+        errors.add(:csv, "deve ter apenas as seguintes colunas: \"#{competition.expected_csv_id_column}\" e \"#{competition.expected_csv_val_column}\"")
+      end
     end
   end
 
   def validate_csv_ids
-    @metric_calc = Metrorb::Calculate.from_csvs(Paperclip.io_adapters.for(competition.expected_csv).read, Paperclip.io_adapters.for(csv).read, headers)
-  rescue Metrorb::BadCsvError => e
-    errors.add(:csv, "a sua solução também deve conter os seguintes ids: #{e.ids.join(',')}".truncate(96, omission: '... (e outros)'))
+    if validate_csv_presence_before_validates?
+      @metric_calc = Metrorb::Calculate.from_csvs(Paperclip.io_adapters.for(competition.expected_csv).read, Paperclip.io_adapters.for(csv).read, headers)
+    end  
+    rescue Metrorb::BadCsvError => e
+      errors.add(:csv, "a sua solução também deve conter os seguintes ids: #{e.ids.join(',')}".truncate(96, omission: '... (e outros)'))
+  end
+
+  def validate_csv_presence_before_validates?
+    if csv_file_name.nil?
+      errors.add(:csv_file_name, "o arquivo csv deve ser informado")
+      return false
+    else
+      return true
+    end
   end
 
   def clean_header(str)

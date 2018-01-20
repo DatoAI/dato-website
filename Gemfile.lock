@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/DatoAI/metrorb.git
-  revision: 5b40081efa578a51d0ac1d6e5531ae15cbc690e0
+  revision: 58f959aabd364bd474773163efc1d187f0a1bc5c
   specs:
-    metrorb (0.1.0)
+    metrorb (0.2.0)
 
 GIT
   remote: https://github.com/decioferreira/omniauth-linkedin-oauth2.git

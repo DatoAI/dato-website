@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/DatoAI/metrorb.git
-  revision: 58f959aabd364bd474773163efc1d187f0a1bc5c
+  revision: 53d5576630b58be570ebed07153d7c1b998b8143
   specs:
     metrorb (0.2.0)
 

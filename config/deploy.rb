@@ -14,7 +14,7 @@ task :production do
 end
 
 task :staging do
-  set :domain, '40.74.225.95'
+  set :domain, '13.65.199.240'
   set :rails_env, 'staging'
   set :deploy_to, '/home/deploy/datoca'
   set :repository, 'https://github.com/DatoAI/dato-website.git'

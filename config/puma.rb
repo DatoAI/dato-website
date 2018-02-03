@@ -45,3 +45,8 @@
 
 # Allow puma to be restarted by `rails restart` command.
 # plugin :tmp_restart
+
+threads 0, 32
+workers 4
+
+preload_app!

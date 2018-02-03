@@ -2,12 +2,28 @@
   <% if @users.nil? || @users.empty? %>
     <h2 class="title has-text-centered">Nenhum usuário encontrado ):</h2>
   <% else %>
-    <% if @users.size.eql?(1) %>
-      <h2>Foi encontrado <%= @users.size %> usuário 
-    <% else %>
-      <h2>Foram encontrados <%= @users.size %> usuários 
-    <% end %>  
-    de <%= User.count %> cadastrados.</h2><br>
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <% if @users.size.eql?(1) %>
+            <h2>Foi encontrado <%= @users.size %> usuário 
+          <% else %>
+            <h2>Foram encontrados <%= @users.size %> usuários 
+          <% end %>  
+          de <%= User.count %> cadastrados.</h2><br>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <%= link_to dashboard_export_users_to_csv_path(format: :csv), class: 'button is-primary' do %>
+            <span class="icon">
+              <i class="fa fa-download"></i>
+            </span>
+            <span>Exportar CSV</span>
+          <% end %>
+        </div>
+      </div>
+    </nav>
     <% @users.each do |user| %>
       <%= link_to edit_user_path(user), class: 'box' do %>
         <nav class="level">

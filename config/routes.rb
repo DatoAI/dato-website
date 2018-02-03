@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   get 'dashboard/home'
   get 'dashboard/list_users'
+  get 'dashboard/export_users_to_csv'
 
   resources :teams, only: [:show, :new, :edit, :create, :update]
   devise_for :users,

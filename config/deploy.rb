@@ -30,7 +30,7 @@ set :shared_files, fetch(:shared_files, []).push('config/app.yml', 'config/datab
 
 # This task is the environment that is loaded all remote run commands, such as
 # `mina deploy` or `mina rake`.
-task :environment do
+task :remote_environment do
   # If you're using rbenv, use this to load the rbenv environment.
   # Be sure to commit your .ruby-version or .rbenv-version to your repository.
   invoke :'rbenv:load'
@@ -38,6 +38,9 @@ task :environment do
     echo "-----> Loading environment"
     #{echo_cmd %[. ~/.profile]}
   }
+end
+
+task :local_environment do
 end
 
 # Put any custom commands you need to run at setup
@@ -87,7 +90,7 @@ namespace :puma do
   set :pumactl_socket, -> { "#{fetch(:shared_path)}/tmp/sockets/pumactl.sock" }
 
   desc 'Setup puma'
-  task setup: :environment do
+  task setup: :remote_environment do
     command %(mkdir -p "#{fetch(:shared_path)}/tmp/sockets")
     command %(chmod g+rx,u+rwx "#{fetch(:shared_path)}/tmp/sockets")
     command %(mkdir -p "#{fetch(:shared_path)}/tmp/pids")
@@ -96,7 +99,7 @@ namespace :puma do
 
 
   desc 'Start puma'
-  task start: :environment do
+  task start: :remote_environment do
     command %[
       if [ -e '#{fetch(:pumactl_socket)}' ]; then
         echo 'Puma is already running!';
@@ -107,7 +110,7 @@ namespace :puma do
   end
 
   desc 'Stop puma'
-  task stop: :environment do
+  task stop: :remote_environment do
     command %[
       if [ -e '#{fetch(:pumactl_socket)}' ]; then
         cd #{fetch(:current_path)} && #{fetch(:pumactl_cmd)} -S #{fetch(:puma_state)} stop
@@ -119,13 +122,13 @@ namespace :puma do
   end
 
   desc 'Restart puma'
-  task restart: :environment do
+  task restart: :remote_environment do
     invoke :'puma:stop'
     invoke :'puma:start'
   end
 
   desc 'Restart puma (phased restart)'
-  task phased_restart: :environment do
+  task phased_restart: :remote_environment do
     command %[
       if [ -e '#{fetch(:pumactl_socket)}' ]; then
         cd #{fetch(:current_path)} && #{fetch(:pumactl_cmd)} -S #{fetch(:puma_state)} --pidfile #{fetch(:puma_pid)} phased-restart

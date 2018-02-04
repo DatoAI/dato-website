@@ -146,7 +146,11 @@ class Competition < ApplicationRecord
   private
 
   def count_lines
-    self.expected_csv_line_count = CSV.new(Paperclip.io_adapters.for(expected_csv).read).read.size
+    begin
+      self.expected_csv_line_count = CSV.new(Paperclip.io_adapters.for(expected_csv).read).read.size
+    rescue CSV::MalformedCSVError => e
+      errors.add(:expected_csv, "Arquivo 'Expected csv' está mal formatado")
+    end
   end
 
   def set_metric_sort

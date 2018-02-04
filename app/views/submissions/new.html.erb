@@ -8,6 +8,16 @@
 </section>
 <section class="section">
   <div class="container">
+
+    <article class="message is-warning">
+      <div class="message-header">
+        <p>Atenção!</p>
+      </div>
+      <div class="message-body">
+        O processo de submissão da resposta pode demorar até 3 minutos dependendo do tamanho do arquivo. Aguarde até o final do processo. 
+      </div>
+    </article>
+
     <%= form_for [@competition, @submission], html: { multipart: true } do |f| %>
 
       <div class="columns">
